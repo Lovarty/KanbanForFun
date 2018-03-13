@@ -1,0 +1,148 @@
+/*-- Reser Css styles --*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline; }
+
+html, body {
+  height: 100%; }
+
+/* remember to define focus styles! */
+:focus {
+  outline: 0; }
+
+body {
+  line-height: 1;
+  color: black;
+  background: white; }
+
+ol, ul {
+  list-style: none; }
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+  border-collapse: separate;
+  border-spacing: 0; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: ""; }
+
+blockquote, q {
+  quotes: "" ""; }
+
+/*-------------------*/
+/*--- Common styles: mixins, variables ---*/
+/*--------------------------*/
+.root-container {
+  height: 100%; }
+
+.board {
+  height: 100%;
+  background-color: #F6F9F9;
+  font-family: 'Josefin Slab', serif; }
+  .board__header {
+    padding: 30px;
+    border-bottom: 1px dashed #808080; }
+    .board__header .info {
+      font-size: 20px;
+      font-size: 1.42857rem;
+      margin-bottom: 20px; }
+    .board__header .filters {
+      font-size: 16px;
+      font-size: 1.14286rem;
+      display: grid;
+      grid-template-columns: 1fr 50px; }
+    .board__header .button {
+      cursor: pointer; }
+    .board__header .add-button {
+      background-image: url(./add.png);
+      background-repeat: no-repeat;
+      background-position: 15px 0;
+      background-size: 18px;
+      width: 50px;
+      height: 18px; }
+      .board__header .add-button:hover {
+        background-image: url(./add-hover.png); }
+
+.board__columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: calc(100% - 121px); }
+  .board__columns .column {
+    padding: 20px; }
+  .board__columns .column:nth-child(even) {
+    background-color: #a2c4f3; }
+
+.task-container .task {
+  margin: 10px 0;
+  padding: 5px;
+  border: 1px dotted #808080; }
+
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.5); }
+  .popup__form__label {
+    display: block; }
+
+.popup_inner {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 25%;
+  bottom: 25%;
+  margin: auto;
+  background: white;
+  padding: 30px; }
+  .popup_inner .popup__form__group {
+    margin: 10px 0; }
+    .popup_inner .popup__form__group .popup__form__control {
+      width: 90%; }
+      .popup_inner .popup__form__group .popup__form__control--invalid {
+        background-color: red; }
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-image: url(./close1.png);
+  background-repeat: no-repeat;
+  background-size: 32px;
+  width: 32px;
+  height: 32px; }
+  .close-button:hover {
+    background-image: url(./close1-hover.png); }
+
+.submit-button {
+  background-color: #a2c4f3;
+  border: none;
+  border: 1px dotted #808080;
+  height: 35px;
+  color: #fff; }
+  .submit-button:hover {
+    background-color: #6F898D;
+    border-color: #a2c4f3; }
