@@ -12,7 +12,7 @@ class Board extends Component {
     super(props);
     this.state = {
       projectName: "Test",
-      columnsData: [
+      processStages: [
         {
           id: uuidv1(),
           title: "TO DO",
@@ -92,12 +92,12 @@ class Board extends Component {
       id: this.state.currentMode === MODE.editing ? currentTask.taskId : uuidv1()
     };
 
-    const categoriesData = this.state.columnsData.slice();
+    const processStages = this.state.processStages.slice();
     let shoudStateBeUpdated = false;
 
     if (this.state.currentMode === MODE.editing) {
       try {
-        let taskCategory = this.getCategoryDataById(currentTask.categoryId, categoriesData);
+        let taskCategory = this.getCategoryDataById(currentTask.categoryId, processStages);
         const currentTaskIndex = taskCategory.tasks.findIndex(task => task.id === currentTask.taskId);
         const previousTask = taskCategory.tasks[currentTaskIndex];
         if (previousTask.title !== newTask.title || previousTask.description !== newTask.description) {
@@ -110,13 +110,13 @@ class Board extends Component {
       }
 
     } else {
-      categoriesData[0].tasks.push(newTask);
+      processStages[0].tasks.push(newTask);
       shoudStateBeUpdated = true;
     }
 
     shoudStateBeUpdated && this.setState(
       {
-        columnsData: categoriesData,
+        processStages: processStages,
         currentMode: undefined,
         currentTask: {}
       });
@@ -140,7 +140,7 @@ class Board extends Component {
 
   getCategoryDataById = (categoryId, copiedData) => {
     try {
-      let categoriesData = copiedData || this.state.columnsData;
+      let categoriesData = copiedData || this.state.processStages;
       return categoriesData.find(col => col.id === categoryId);
     } catch (e) {
       console.error(e);
@@ -177,7 +177,7 @@ class Board extends Component {
           </div>
         </header>
 
-        <BoardColumns columnsData={this.state.columnsData} openPopup={this.openPopup} />
+        <BoardColumns processStages={this.state.processStages} openPopup={this.openPopup} />
 
         {this.state.showPopup ?
           <Popup

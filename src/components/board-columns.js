@@ -6,7 +6,7 @@ import Column from './column';
 function BoardColumns(props) {
     return (
         <div className="board__columns">
-            {props.columnsData.map((colData) => <Column key={colData.id} categoryId={colData.id} data={colData} openPopup={props.openPopup}/>)}
+            {props.processStages.map((colData) => <Column key={colData.id} categoryId={colData.id} data={colData} openPopup={props.openPopup}/>)}
         </div>);
 }
 
