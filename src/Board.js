@@ -4,6 +4,7 @@ import uuidv1 from 'uuid/v1';
 
 import BoardColumns from './components/board-columns';
 import Popup from './components/popup';
+import { MODE } from './common/constants';
 
 class Board extends Component {
 
@@ -77,33 +78,92 @@ class Board extends Component {
           ]
         },
       ],
-      showPopup: false
+      showPopup: false,
+      currentMode: undefined,
+      currentTask: {}
     }
   }
 
-  addNewTask = (task) => {
+  saveTask = (task) => {
+    const currentTask = this.state.currentTask;
     const newTask = {
       title: task && task.title,
       description: task && task.description,
-      id: uuidv1()
+      id: this.state.currentMode === MODE.editing ? currentTask.taskId : uuidv1()
     };
 
-    const tasks = this.state.columnsData.slice();
-    tasks[0].tasks.push(newTask);
+    const categoriesData = this.state.columnsData.slice();
+    let shoudStateBeUpdated = false;
 
-    this.setState({ columnsData: tasks });
+    if (this.state.currentMode === MODE.editing) {
+      try {
+        let taskCategory = this.getCategoryDataById(currentTask.categoryId, categoriesData);
+        const currentTaskIndex = taskCategory.tasks.findIndex(task => task.id === currentTask.taskId);
+        const previousTask = taskCategory.tasks[currentTaskIndex];
+        if (previousTask.title !== newTask.title || previousTask.description !== newTask.description) {
+          taskCategory.tasks[currentTaskIndex] = newTask;
+          shoudStateBeUpdated = true;
+        }
 
+      } catch (e) {
+        console.error(e);
+      }
+
+    } else {
+      categoriesData[0].tasks.push(newTask);
+      shoudStateBeUpdated = true;
+    }
+
+    shoudStateBeUpdated && this.setState(
+      {
+        columnsData: categoriesData,
+        currentMode: undefined,
+        currentTask: {}
+      });
     this.togglePopup();
   }
 
-  openPopup = () => {
-    this.togglePopup();
+  openPopup = (taskId, categoryId) => {
+    this.togglePopup(taskId, categoryId);
   }
 
-  togglePopup = () => {
+  togglePopup = (taskId, categoryId) => {
     this.setState({
-      showPopup: !this.state.showPopup
+      showPopup: !this.state.showPopup,
+      currentMode: taskId ? MODE.editing : MODE.creating,
+      currentTask: {
+        categoryId: categoryId,
+        taskId: taskId
+      }
     });
+  }
+
+  getCategoryDataById = (categoryId, copiedData) => {
+    try {
+      let categoriesData = copiedData || this.state.columnsData;
+      return categoriesData.find(col => col.id === categoryId);
+    } catch (e) {
+      console.error(e);
+    }
+    return null;
+  }
+
+  getTaskById = (taskId) => {
+    const currentCategory = this.getCategoryDataById(this.state.currentTask.categoryId);
+    let task;
+
+    if (currentCategory) {
+      try {
+        task = currentCategory.tasks.find(task => task.id === this.state.currentTask.taskId);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    return {
+      title: (task && task.title) || "",
+      description: (task && task.description) || ""
+    }
   }
 
   render() {
@@ -113,17 +173,19 @@ class Board extends Component {
           <div className="info">{this.state.projectName} Kanban Board</div>
           <div className="filters">
             <div>FILTERS: </div>
-            <div className="add-button button" onClick={this.openPopup}>...</div>
+            <div className="add-button button" onClick={() => this.openPopup()}>...</div>
           </div>
         </header>
 
-        <BoardColumns columnsData={this.state.columnsData} />
+        <BoardColumns columnsData={this.state.columnsData} openPopup={this.openPopup} />
 
         {this.state.showPopup ?
           <Popup
-            text='Close Me'
-            addNewTask={this.addNewTask}
+            text={this.currentMode === MODE.editing ? "Edit the task" : "Create a new task"}
+            task={this.getTaskById(this.state.currentTask.taskId)}
+            saveTask={this.saveTask}
             closePopup={this.togglePopup}
+            mode={this.state.currentMode}
           />
           : null
         }

@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
+import FormError from './form-error';
+import {MODE} from '../common/constants';
+
 
 class Popup extends Component {
     constructor(props) {
         super(props);
+        const isEditingMode = this.props.mode === MODE.editing;
         this.state = {
-            title: "",
-            description: "",
+            title: props.task && props.task.title,
+            description: props.task && props.task.description,
             formErrors: { title: '', description: '' },
-            titleValid: false,
-            descriptionValid: false,
-            formValid: false
+            titleValid: isEditingMode,
+            descriptionValid: isEditingMode,
+            formValid: isEditingMode
         }
+
     }
 
     handleChange = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         this.setState(
             { [name]: value },
             () => { this.validateField(name, value) });
+    }
+
+    validateForm() {
+        this.setState({ formValid: this.state.titleValid && this.state.descriptionValid });
     }
 
     validateField = (fieldName, value) => {
@@ -27,12 +36,12 @@ class Popup extends Component {
 
         switch (fieldName) {
             case 'title':
-                titleValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-                fieldValidationErrors.title = titleValid ? '' : ' is invalid';
+                titleValid = value.length >= 1;
+                fieldValidationErrors.title = titleValid ? '' : 'Should be longer';
                 break;
             case 'description':
-                descriptionValid = value.length >= 6;
-                fieldValidationErrors.description = descriptionValid ? '' : ' is too short';
+                descriptionValid = value.length >= 1;
+                fieldValidationErrors.description = descriptionValid ? '' : 'Should be longer';
                 break;
             default:
                 break;
@@ -46,8 +55,8 @@ class Popup extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { title, description } = this.state;
-        this.props.addNewTask({ title: title, description: description });
+        const { title, description } = this.state;        
+        this.props.saveTask({ title: title, description: description });
     }
     render() {
 
@@ -59,13 +68,20 @@ class Popup extends Component {
                     <form className="popup__form" onSubmit={this.handleSubmit}>
                         <div className="popup__form__group">
                             <label className="popup__form__label" htmlFor="titleInput">Title:</label>
-                            <input id="titleInput" className={"popup__form__control" + (this.state.titleValid? '' : ' popup__form__control--invalid')} type="text" name="title" value={this.state.title} onChange={this.handleChange} />
+                            <input id="titleInput"
+                                className={"popup__form__control" + (this.state.titleValid ? '' : ' popup__form__control--invalid')}
+                                type="text" name="title" value={this.state.title} onChange={this.handleChange} />
+                            <FormError errorDescription={this.state.formErrors.title} />
                         </div>
                         <div className="popup__form__group">
                             <label className="popup__form__label" htmlFor="descriptionInput">Description:</label>
-                            <input id="descriptionInput" className="popup__form__control" type="text" name="description" value={this.state.description} onChange={this.handleChange} />
+                            <input id="descriptionInput"
+                                className={"popup__form__control" + (this.state.descriptionValid ? '' : ' popup__form__control--invalid')}
+                                type="text" name="description"
+                                value={this.state.description} onChange={this.handleChange} />
+                            <FormError errorDescription={this.state.formErrors.description} />
                         </div>
-                        <input type="submit" className="submit-button" value="Save" />
+                        <input type="submit" disabled={!this.state.formValid} className="submit-button button" value="Save" />
                     </form>
                 </div>
             </div>

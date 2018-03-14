@@ -61,6 +61,7 @@ $LIGHT_BLUE: #a2c4f3;
 $LIGHT_GREY: #808080;
 $HOVER_BUTTON_GREY: #6F898D;
 $WHITE_COLOR: #fff;
+$LIGHT_PINK: #c77db3;
 //
 $HEADER_PADDING: 30px;
 
@@ -96,11 +97,6 @@ $base-font-size: 14px;
       display: grid;
       grid-template-columns: 1fr 50px;
     }
-
-    .button{
-      cursor: pointer;
-    }
-
     .add-button{
       background-image: url(./add.png);
       background-repeat: no-repeat;
@@ -114,6 +110,11 @@ $base-font-size: 14px;
       }
     }
   }
+
+  .button{
+    cursor: pointer;
+  }
+  
 }
 
 .board__columns{
@@ -130,13 +131,29 @@ $base-font-size: 14px;
   }
 }
 
-.task-container{
-  .task{
-    margin: 10px 0;
-    padding: 5px;
-    border: 1px dotted $LIGHT_GREY;
-  }  
-}
+
+.task{
+  margin: 10px 0;
+  padding: 5px;
+  border: 1px dotted $LIGHT_GREY;
+  position: relative;
+
+  .edit-button{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 18px;
+    width: 18px;
+    background-image: url(./doughnut.png);
+    background-repeat: no-repeat;
+    background-size: 18px;
+
+    &:hover{
+      background-image: url(./doughnut-hover.png);
+    }
+  }
+}  
+
 
 
 .popup {
@@ -167,11 +184,20 @@ $base-font-size: 14px;
   padding: 30px;
 
   .popup__form__group{
-    margin: 10px 0;
+    margin: 15px 0;
     .popup__form__control{
       width: 90%;
+      height: 25px;
+      padding: 0 5px;
+      margin-top: 5px;
+      font-family: 'Josefin Slab', serif;
+      font-size: 14px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: $LIGHT_GREY;
+
       &--invalid{
-        border-color: red;
+        border-color: $LIGHT_PINK;       
       }
     }    
   }
@@ -199,8 +225,24 @@ $base-font-size: 14px;
   height: 35px;
   color: $WHITE_COLOR;
 
+  &:disabled, &[disabled]{
+    cursor: not-allowed;
+    pointer-events: none;
+
+    /*Button disabled - CSS color class*/
+    color: #c0c0c0;
+    background-color: #ffffff;
+  }
+
   &:hover{
     background-color: $HOVER_BUTTON_GREY;
     border-color: $LIGHT_BLUE;
   }
+}
+
+
+.form-error{
+  height: 10px;
+  font-size: 10px;
+  color: $LIGHT_PINK;
 }
