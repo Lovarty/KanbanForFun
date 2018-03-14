@@ -70,8 +70,6 @@ blockquote, q {
       font-size: 1.14286rem;
       display: grid;
       grid-template-columns: 1fr 50px; }
-    .board__header .button {
-      cursor: pointer; }
     .board__header .add-button {
       background-image: url(./add.png);
       background-repeat: no-repeat;
@@ -81,6 +79,8 @@ blockquote, q {
       height: 18px; }
       .board__header .add-button:hover {
         background-image: url(./add-hover.png); }
+  .board .button {
+    cursor: pointer; }
 
 .board__columns {
   display: grid;
@@ -91,10 +91,22 @@ blockquote, q {
   .board__columns .column:nth-child(even) {
     background-color: #a2c4f3; }
 
-.task-container .task {
+.task {
   margin: 10px 0;
   padding: 5px;
-  border: 1px dotted #808080; }
+  border: 1px dotted #808080;
+  position: relative; }
+  .task .edit-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 18px;
+    width: 18px;
+    background-image: url(./doughnut.png);
+    background-repeat: no-repeat;
+    background-size: 18px; }
+    .task .edit-button:hover {
+      background-image: url(./doughnut-hover.png); }
 
 .popup {
   position: fixed;
@@ -119,11 +131,19 @@ blockquote, q {
   background: white;
   padding: 30px; }
   .popup_inner .popup__form__group {
-    margin: 10px 0; }
+    margin: 15px 0; }
     .popup_inner .popup__form__group .popup__form__control {
-      width: 90%; }
+      width: 90%;
+      height: 25px;
+      padding: 0 5px;
+      margin-top: 5px;
+      font-family: 'Josefin Slab', serif;
+      font-size: 14px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #808080; }
       .popup_inner .popup__form__group .popup__form__control--invalid {
-        background-color: red; }
+        border-color: #c77db3; }
 
 .close-button {
   position: absolute;
@@ -143,6 +163,17 @@ blockquote, q {
   border: 1px dotted #808080;
   height: 35px;
   color: #fff; }
+  .submit-button:disabled, .submit-button[disabled] {
+    cursor: not-allowed;
+    pointer-events: none;
+    /*Button disabled - CSS color class*/
+    color: #c0c0c0;
+    background-color: #ffffff; }
   .submit-button:hover {
     background-color: #6F898D;
     border-color: #a2c4f3; }
+
+.form-error {
+  height: 10px;
+  font-size: 10px;
+  color: #c77db3; }
