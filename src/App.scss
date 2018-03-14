@@ -1,56 +1,3 @@
-/*-- Reser Css styles --*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-weight: inherit;
-	font-style: inherit;
-	font-size: 100%;
-	font-family: inherit;
-	vertical-align: baseline;
-}
-html,body { height:100%; }
-/* remember to define focus styles! */
-:focus {
-	outline: 0;
-}
-body {
-	line-height: 1;
-	color: black;
-	background: white;
-}
-ol, ul {
-	list-style: none;
-}
-/* tables still need 'cellspacing="0"' in the markup */
-table {
-	border-collapse: separate;
-	border-spacing: 0;
-}
-caption, th, td {
-	text-align: left;
-	font-weight: normal;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: "";
-}
-blockquote, q {
-	quotes: "" "";
-}
-
-/*-------------------*/
-
-
 /*--- Common styles: mixins, variables ---*/
 
 //ICONS
@@ -65,96 +12,89 @@ $LIGHT_PINK: #c77db3;
 //
 $HEADER_PADDING: 30px;
 
-
-
 $base-font-size: 14px;
- @mixin font-size($font-size){
-    font-size: $font-size;
-    font-size: ($font-size/$base-font-size)*1rem;
+@mixin font-size($font-size) {
+  font-size: $font-size;
+  font-size: ($font-size/$base-font-size)*1rem;
 }
 
 /*--------------------------*/
 
-.root-container{
-  height: 100%;
-}
 .board {
   height: 100%;
   background-color: #F6F9F9;
   font-family: 'Josefin Slab', serif;
 
-  &__header{
+  &__header {
     padding: $HEADER_PADDING;
     border-bottom: 1px dashed $LIGHT_GREY;
-    
-    .info{
+
+    &__heading {
       @include font-size(20px);
       margin-bottom: 20px;
     }
+  }
 
-    .filters{
-      @include font-size(16px);
-      display: grid;
-      grid-template-columns: 1fr 50px;
-    }
-    .add-button{
-      background-image: url(./add.png);
-      background-repeat: no-repeat;
-      background-position: 15px 0;
-      background-size: 18px;
-      width: 50px;
-      height: 18px;      
+  &__controls {
+    @include font-size(16px);
+    display: grid;
+    grid-template-columns: 1fr 50px;
+  }
 
-      &:hover{
-        background-image: url(./add-hover.png);
-      }
+  .add-button {
+    background-image: url("./add.png");
+    background-repeat: no-repeat;
+    background-position: 15px 0;
+    background-size: 18px;
+    width: 50px;
+    height: 18px;
+
+    &:hover {
+      background-image: url("./add-hover.png");
     }
   }
 
-  .button{
+  .button {
     cursor: pointer;
   }
-  
+
 }
 
-.board__columns{
+.board__columns {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   height: calc(100% - 121px);
 
-  .column{
+  .column {
     padding: 20px;
   }
 
-  .column:nth-child(even){
+  .column:nth-child(even) {
     background-color: $LIGHT_BLUE;
   }
 }
 
-
-.task{
+.task {
   margin: 10px 0;
   padding: 5px;
   border: 1px dotted $LIGHT_GREY;
   position: relative;
 
-  .edit-button{
+  .edit-button {
     position: absolute;
     top: 10px;
     right: 10px;
     height: 18px;
     width: 18px;
-    background-image: url(./doughnut.png);
+    background-image: url("./doughnut.png");
     background-repeat: no-repeat;
     background-size: 18px;
 
-    &:hover{
-      background-image: url(./doughnut-hover.png);
+    &:hover {
+      background-image: url("./doughnut-hover.png");
     }
   }
-}  
-
-
+}
 
 .popup {
   position: fixed;
@@ -167,12 +107,13 @@ $base-font-size: 14px;
   margin: auto;
   background-color: rgba(0,0,0, 0.5);
 
-  &__form{
-    &__label{
+  &__form {
+    &__label {
       display: block;
     }
   }
 }
+
 .popup_inner {
   position: absolute;
   left: 25%;
@@ -183,9 +124,10 @@ $base-font-size: 14px;
   background: white;
   padding: 30px;
 
-  .popup__form__group{
+  .popup__form__group {
     margin: 15px 0;
-    .popup__form__control{
+
+    .popup__form__control {
       width: 90%;
       height: 25px;
       padding: 0 5px;
@@ -196,36 +138,37 @@ $base-font-size: 14px;
       border-style: solid;
       border-color: $LIGHT_GREY;
 
-      &--invalid{
-        border-color: $LIGHT_PINK;       
+      &--invalid {
+        border-color: $LIGHT_PINK;
       }
-    }    
+    }
   }
 }
 
-.close-button{
+.close-button {
   position: absolute;
   top: 20px;
   right: 20px;
-  background-image: url(./close1.png);
+  background-image: url("./close1.png");
   background-repeat: no-repeat;
   background-size: 32px;
   width: 32px;
-  height: 32px;      
+  height: 32px;
 
-  &:hover{
-    background-image: url(./close1-hover.png);
+  &:hover {
+    background-image: url("./close1-hover.png");
   }
 }
 
-.submit-button{
+.submit-button {
   background-color: $LIGHT_BLUE;
   border: none;
   border: 1px dotted $LIGHT_GREY;
   height: 35px;
   color: $WHITE_COLOR;
 
-  &:disabled, &[disabled]{
+  &:disabled,
+  &[disabled] {
     cursor: not-allowed;
     pointer-events: none;
 
@@ -234,14 +177,13 @@ $base-font-size: 14px;
     background-color: #ffffff;
   }
 
-  &:hover{
+  &:hover {
     background-color: $HOVER_BUTTON_GREY;
     border-color: $LIGHT_BLUE;
   }
 }
 
-
-.form-error{
+.form-error {
   height: 10px;
   font-size: 10px;
   color: $LIGHT_PINK;
