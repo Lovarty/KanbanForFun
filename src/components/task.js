@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Task extends Component {
 
     openPopup = () => {
-        this.props.openPopup(this.props.data.id, this.props.categoryId);
+        this.props.openPopup({taskId: this.props.data.id, stageId: this.props.stageId});
     }
     render() {
         const { title, description } = this.props.data;

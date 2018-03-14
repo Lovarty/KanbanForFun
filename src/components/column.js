@@ -9,7 +9,7 @@ class Column extends Component {
             <div className="column">
                 <div>{title}</div>
                 <div className="task-container">
-                    {tasks.map((task) => <Task key={task.id} categoryId={this.props.categoryId} data={task} openPopup={this.props.openPopup}/>)}
+                    {tasks.map((task) => <Task key={task.id} stageId={this.props.stageId} data={task} openPopup={this.props.openPopup}/>)}
                 </div>
 
             </div>);

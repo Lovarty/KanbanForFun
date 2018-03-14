@@ -84,6 +84,48 @@ class Board extends Component {
     }
   }
 
+  openPopup = ({taskId, stageId} = {}) => {
+    this.togglePopup({taskId, stageId});
+  }
+
+  togglePopup = ({taskId, stageId} = {}) => {
+    this.setState({
+      showPopup: !this.state.showPopup,
+      currentMode: taskId && stageId ? MODE.editing : MODE.creating,
+      currentTask: {
+        stageId: stageId,
+        taskId: taskId
+      }
+    });
+  }
+
+  getStageDataById = (stageId, processStagesData = this.state.processStages) => {
+    try {
+      return processStagesData.find(col => col.id === stageId);
+    } catch (e) {
+      console.error(e);
+    }
+    return null;
+  }
+
+  getTaskById = (taskId) => {
+    const currentStage = this.getStageDataById(this.state.currentTask.stageId);
+    let task;
+
+    if (currentStage) {
+      try {
+        task = currentStage.tasks.find(task => task.id === this.state.currentTask.taskId);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    return {
+      title: (task && task.title) || "",
+      description: (task && task.description) || ""
+    }
+  }
+
   saveTask = (task) => {
     const currentTask = this.state.currentTask;
     const newTask = {
@@ -97,7 +139,7 @@ class Board extends Component {
 
     if (this.state.currentMode === MODE.editing) {
       try {
-        let taskCategory = this.getCategoryDataById(currentTask.categoryId, processStages);
+        let taskCategory = this.getStageDataById(currentTask.stageId, processStages);
         const currentTaskIndex = taskCategory.tasks.findIndex(task => task.id === currentTask.taskId);
         const previousTask = taskCategory.tasks[currentTaskIndex];
         if (previousTask.title !== newTask.title || previousTask.description !== newTask.description) {
@@ -123,57 +165,14 @@ class Board extends Component {
     this.togglePopup();
   }
 
-  openPopup = (taskId, categoryId) => {
-    this.togglePopup(taskId, categoryId);
-  }
-
-  togglePopup = (taskId, categoryId) => {
-    this.setState({
-      showPopup: !this.state.showPopup,
-      currentMode: taskId ? MODE.editing : MODE.creating,
-      currentTask: {
-        categoryId: categoryId,
-        taskId: taskId
-      }
-    });
-  }
-
-  getCategoryDataById = (categoryId, copiedData) => {
-    try {
-      let categoriesData = copiedData || this.state.processStages;
-      return categoriesData.find(col => col.id === categoryId);
-    } catch (e) {
-      console.error(e);
-    }
-    return null;
-  }
-
-  getTaskById = (taskId) => {
-    const currentCategory = this.getCategoryDataById(this.state.currentTask.categoryId);
-    let task;
-
-    if (currentCategory) {
-      try {
-        task = currentCategory.tasks.find(task => task.id === this.state.currentTask.taskId);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-
-    return {
-      title: (task && task.title) || "",
-      description: (task && task.description) || ""
-    }
-  }
-
   render() {
     return (
       <div className="board">
         <header className="board__header">
-          <div className="info">{this.state.projectName} Kanban Board</div>
-          <div className="filters">
-            <div>FILTERS: </div>
-            <div className="add-button button" onClick={() => this.openPopup()}>...</div>
+          <div className="board__header__heading">{this.state.projectName} Kanban Board</div>
+          <div className="board__controls">
+            <div className="filters">FILTERS: </div>
+            <div className="button add-button" onClick={() => this.openPopup()}>...</div>
           </div>
         </header>
 
