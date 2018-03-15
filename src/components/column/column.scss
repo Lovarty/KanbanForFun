@@ -1,0 +1,9 @@
+@import "../../common/constants.scss";
+
+.column {
+  padding: 20px;
+}
+
+.column:nth-child(even) {
+  background-color: $LIGHT_BLUE;
+}

@@ -1,0 +1,89 @@
+@import "../../common/constants.scss";
+
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0,0,0, 0.5);
+
+  &__form {
+    &__label {
+      display: block;
+    }
+  }
+
+  .popup_inner {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 25%;
+    margin: auto;
+    background: white;
+    padding: 30px;
+  }
+
+  .popup__form__group {
+    margin: 15px 0;
+  }
+
+  .popup__form__control {
+    width: 90%;
+    height: 25px;
+    padding: 0 5px;
+    margin-top: 5px;
+    font-family: 'Josefin Slab', serif;
+    font-size: 14px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $LIGHT_GREY;
+
+    &_invalid {
+      border-color: $LIGHT_PINK;
+    }
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-image: url("./close1.png");
+  background-repeat: no-repeat;
+  background-size: 32px;
+  width: 32px;
+  height: 32px;
+
+  &:hover {
+    background-image: url("./close1-hover.png");
+  }
+}
+
+.submit-button {
+  background-color: $LIGHT_BLUE;
+  border: none;
+  border: 1px dotted $LIGHT_GREY;
+  height: 35px;
+  color: $WHITE_COLOR;
+
+  &:disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    pointer-events: none;
+
+    /*Button disabled - CSS color class*/
+    color: #c0c0c0;
+    background-color: #ffffff;
+  }
+
+  &:hover {
+    background-color: $HOVER_BUTTON_GREY;
+    border-color: $LIGHT_BLUE;
+  }
+
+}

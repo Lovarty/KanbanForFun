@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Task from './task';
+import Task from '../task/task';
+import './column.scss';
 
 class Column extends Component {
     render() {
@@ -9,7 +10,7 @@ class Column extends Component {
             <div className="column">
                 <div>{title}</div>
                 <div className="task-container">
-                    {tasks.map((task) => <Task key={task.id} stageId={this.props.stageId} data={task} openPopup={this.props.openPopup}/>)}
+                    {tasks.map((task) => <Task key={task.id} stageId={this.props.stageId} data={task} openPopup={this.props.openPopup} />)}
                 </div>
 
             </div>);

@@ -1,0 +1,6 @@
+/*--- Common styles: mixins, variables ---*/
+.column {
+  padding: 20px; }
+
+.column:nth-child(even) {
+  background-color: #a2c4f3; }

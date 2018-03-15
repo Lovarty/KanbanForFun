@@ -1,0 +1,5 @@
+/*--- Common styles: mixins, variables ---*/
+.form-error {
+  height: 10px;
+  font-size: 10px;
+  color: #c77db3; }

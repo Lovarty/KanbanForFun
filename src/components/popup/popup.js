@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import FormError from './form-error';
-import {MODE} from '../common/constants';
+import FormError from '../form-error/form-error';
+import { MODE } from '../../common/constants';
+import './popup.scss';
 
 
 class Popup extends Component {
@@ -55,33 +56,33 @@ class Popup extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { title, description } = this.state;        
+        const { title, description } = this.state;
         this.props.saveTask({ title: title, description: description });
     }
     render() {
 
         return (
-            <div className='popup'>
-                <div className='popup_inner'>
+            <div className="popup">
+                <div className="popup_inner">
                     <h1>{this.props.text}</h1>
-                    <div className="close-button button" onClick={this.props.closePopup}></div>
+                    <div className="button  close-button" onClick={this.props.closePopup}></div>
                     <form className="popup__form" onSubmit={this.handleSubmit}>
                         <div className="popup__form__group">
                             <label className="popup__form__label" htmlFor="titleInput">Title:</label>
                             <input id="titleInput"
-                                className={"popup__form__control" + (this.state.titleValid ? '' : ' popup__form__control--invalid')}
+                                className={"popup__form__control" + (this.state.titleValid ? "" : " popup__form__control_invalid")}
                                 type="text" name="title" value={this.state.title} onChange={this.handleChange} />
                             <FormError errorDescription={this.state.formErrors.title} />
                         </div>
                         <div className="popup__form__group">
                             <label className="popup__form__label" htmlFor="descriptionInput">Description:</label>
                             <input id="descriptionInput"
-                                className={"popup__form__control" + (this.state.descriptionValid ? '' : ' popup__form__control--invalid')}
+                                className={"popup__form__control" + (this.state.descriptionValid ? "" : " popup__form__control_invalid")}
                                 type="text" name="description"
                                 value={this.state.description} onChange={this.handleChange} />
                             <FormError errorDescription={this.state.formErrors.description} />
                         </div>
-                        <input type="submit" disabled={!this.state.formValid} className="submit-button button" value="Save" />
+                        <input type="submit" disabled={!this.state.formValid} className="button  submit-button" value="Save" />
                     </form>
                 </div>
             </div>

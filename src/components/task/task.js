@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import './task.scss';
 
 class Task extends Component {
 
     openPopup = () => {
-        this.props.openPopup({taskId: this.props.data.id, stageId: this.props.stageId});
+        this.props.openPopup({ taskId: this.props.data.id, stageId: this.props.stageId });
     }
     render() {
         const { title, description } = this.props.data;

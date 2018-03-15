@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import uuidv1 from 'uuid/v1';
 
-import BoardColumns from './components/board-columns';
-import Popup from './components/popup';
+import BoardColumns from './components/board-columns/board-columns';
+import Popup from './components/popup/popup';
 import { MODE } from './common/constants';
 
 class Board extends Component {
@@ -84,11 +84,11 @@ class Board extends Component {
     }
   }
 
-  openPopup = ({taskId, stageId} = {}) => {
-    this.togglePopup({taskId, stageId});
+  openPopup = ({ taskId, stageId } = {}) => {
+    this.togglePopup({ taskId, stageId });
   }
 
-  togglePopup = ({taskId, stageId} = {}) => {
+  togglePopup = ({ taskId, stageId } = {}) => {
     this.setState({
       showPopup: !this.state.showPopup,
       currentMode: taskId && stageId ? MODE.editing : MODE.creating,

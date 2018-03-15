@@ -1,0 +1,16 @@
+/*--- Common styles: mixins, variables ---*/
+
+//COLORS
+$LIGHT_BLUE: #a2c4f3;
+$LIGHT_GREY: #808080;
+$HOVER_BUTTON_GREY: #6F898D;
+$WHITE_COLOR: #fff;
+$LIGHT_PINK: #c77db3;
+//
+$HEADER_PADDING: 30px;
+
+$base-font-size: 14px;
+@mixin font-size($font-size) {
+  font-size: $font-size;
+  font-size: ($font-size/$base-font-size)*1rem;
+}

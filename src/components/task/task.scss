@@ -1,0 +1,23 @@
+@import '../../common/constants.scss';
+
+.task {
+  margin: 10px 0;
+  padding: 5px;
+  border: 1px dotted $LIGHT_GREY;
+  position: relative;
+
+  .edit-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 18px;
+    width: 18px;
+    background-image: url("./doughnut.png");
+    background-repeat: no-repeat;
+    background-size: 18px;
+
+    &:hover {
+      background-image: url("./doughnut-hover.png");
+    }
+  }
+}
