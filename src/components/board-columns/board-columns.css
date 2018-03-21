@@ -1,4 +1,0 @@
-.board__columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  height: calc(100% - 121px); }

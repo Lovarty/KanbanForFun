@@ -1,0 +1,30 @@
+/*--- Common styles: mixins, variables ---*/
+.button {
+  cursor: pointer; }
+
+/*--------------------------*/
+.board {
+  height: 100%;
+  background-color: #F6F9F9;
+  font-family: 'Josefin Slab', serif; }
+  .board__header {
+    padding: 30px;
+    border-bottom: 1px dashed #808080; }
+    .board__header__heading {
+      font-size: 20px;
+      font-size: 1.42857rem;
+      margin-bottom: 20px; }
+  .board__controls {
+    font-size: 16px;
+    font-size: 1.14286rem;
+    display: grid;
+    grid-template-columns: 1fr 50px; }
+  .board .add-button {
+    background-image: url("../../images/add.png");
+    background-repeat: no-repeat;
+    background-position: 15px 0;
+    background-size: 18px;
+    width: 50px;
+    height: 18px; }
+    .board .add-button:hover {
+      background-image: url("../../images/add-hover.png"); }

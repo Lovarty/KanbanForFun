@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Task from '../task/task';
+import Task from '../task/';
 import './column.scss';
 
 class Column extends Component {

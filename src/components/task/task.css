@@ -10,8 +10,8 @@
     right: 10px;
     height: 18px;
     width: 18px;
-    background-image: url("./doughnut.png");
+    background-image: url("../../images/doughnut.png");
     background-repeat: no-repeat;
     background-size: 18px; }
     .task .edit-button:hover {
-      background-image: url("./doughnut-hover.png"); }
+      background-image: url("../../images/doughnut-hover.png"); }

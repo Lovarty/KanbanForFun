@@ -1,6 +1,9 @@
 /*--- Common styles: mixins, variables ---*/
 .popup {
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   top: 0;
@@ -12,14 +15,11 @@
   .popup__form__label {
     display: block; }
   .popup .popup_inner {
-    position: absolute;
-    left: 25%;
-    right: 25%;
-    top: 25%;
-    bottom: 25%;
-    margin: auto;
+    position: relative;
+    height: 250px;
+    width: 50%;
     background: white;
-    padding: 30px; }
+    padding: 50px; }
   .popup .popup__form__group {
     margin: 15px 0; }
   .popup .popup__form__control {
@@ -34,18 +34,20 @@
     border-color: #808080; }
     .popup .popup__form__control_invalid {
       border-color: #c77db3; }
+  .popup .popup__form__select {
+    width: 45%; }
 
 .close-button {
   position: absolute;
   top: 20px;
   right: 20px;
-  background-image: url("./close1.png");
+  background-image: url("../../images/close1.png");
   background-repeat: no-repeat;
   background-size: 32px;
   width: 32px;
   height: 32px; }
   .close-button:hover {
-    background-image: url("./close1-hover.png"); }
+    background-image: url("../../images/close1-hover.png"); }
 
 .submit-button {
   background-color: #a2c4f3;

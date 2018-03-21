@@ -1,5 +1,5 @@
-@import './common/constants.scss';
-@import './common/common-styles.scss';
+@import '../../common/constants.scss';
+@import '../../common/common-styles.scss';
 /*--------------------------*/
 
 .board {
@@ -24,7 +24,7 @@
   }
 
   .add-button {
-    background-image: url("./add.png");
+    background-image: url("../../images/add.png");
     background-repeat: no-repeat;
     background-position: 15px 0;
     background-size: 18px;
@@ -32,7 +32,7 @@
     height: 18px;
 
     &:hover {
-      background-image: url("./add-hover.png");
+      background-image: url("../../images/add-hover.png");
     }
   }
 }
