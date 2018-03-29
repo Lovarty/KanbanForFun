@@ -267,50 +267,55 @@ class Board extends Component {
   }
 
   changeTaskStage = (taskId, newCategoryId) => {
-    let allStagesTasks = this.state.processStages.slice();
+    try {
+      let allStagesTasks = this.state.processStages.slice();
 
-    //find the previous category
-    let prevCategory,
-      prevCategoryIndex,
-      currentTask,
-      currentTaskIndex;
+      //find the previous category
+      let prevCategory,
+        prevCategoryIndex,
+        currentTask,
+        currentTaskIndex;
 
-    prevCategory = allStagesTasks.find((category, categoryIndex) => {
-      return category.tasks.find((task, taskIndex) => {
-        if (task.id === taskId) {
-          currentTask = task;
-          currentTaskIndex = taskIndex;
-          prevCategoryIndex = categoryIndex;
+
+      prevCategory = allStagesTasks.find((category, categoryIndex) => {
+        return category.tasks.find((task, taskIndex) => {
+          if (task.id === taskId) {
+            currentTask = task;
+            currentTaskIndex = taskIndex;
+            prevCategoryIndex = categoryIndex;
+            return true;
+          }
+          return false;
+        });
+      });
+
+      //remove the task from its previous stage
+      prevCategory.tasks.splice(currentTaskIndex, 1);
+
+      //???
+      allStagesTasks[prevCategoryIndex] = prevCategory;
+
+      //find the new category
+      let newCategory, newCategoryIndex;
+
+      newCategory = allStagesTasks.find((category, index) => {
+        if (category.id === newCategoryId) {
+          newCategoryIndex = index;
           return true;
         }
         return false;
       });
-    });
 
-    //remove the task from its previous stage
-    prevCategory.tasks.splice(currentTaskIndex, 1);
+      currentTask.categoryId = newCategoryId;
 
-    //???
-    allStagesTasks[prevCategoryIndex] = prevCategory;
+      newCategory.tasks.push(currentTask);
 
-    //find the new category
-    let newCategory, newCategoryIndex;
+      allStagesTasks[newCategoryIndex] = newCategory;
 
-    newCategory = allStagesTasks.find((category, index) => {
-      if (category.id === newCategoryId) {
-        newCategoryIndex = index;
-        return true;
-      }
-      return false;
-    });
-
-    currentTask.categoryId = newCategoryId;
-
-    newCategory.tasks.push(currentTask);
-
-    allStagesTasks[newCategoryIndex] = newCategory;
-
-    this.setState({ processStages: allStagesTasks });
+      this.setState({ processStages: allStagesTasks });
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   render() {
