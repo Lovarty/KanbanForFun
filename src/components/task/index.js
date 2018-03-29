@@ -28,6 +28,8 @@ class Task extends Component {
         console.log("Start to drag " + e.target.id);
     }
 
+
+
     render() {
         const { title, description, assigneeId, id } = this.props.data,
             assignee = this.props.getAssigneeInfoById(assigneeId);
@@ -46,7 +48,10 @@ class Task extends Component {
             };
         }
 
-        return (<div className="task" draggable="true" onClick={this.openPopup} id={id} onDragStart={e => this.onDragStart(e)}>
+        return (<div className="task" draggable="true"
+            onClick={this.openPopup}
+            id={id}
+            onDragStart={e => this.onDragStart(e)}>
             <div>{title}</div>
             <div>{description}</div>
             {
