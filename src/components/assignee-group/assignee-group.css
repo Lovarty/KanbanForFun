@@ -1,0 +1,18 @@
+/*--- Common styles: mixins, variables ---*/
+.assignee-group {
+  align-self: center;
+  justify-self: right;
+  margin-right: 17%;
+  border: 1px dashed #808080;
+  cursor: pointer; }
+  .assignee-group:hover {
+    border-color: #a2c4f3; }
+  .assignee-group .assignee-info {
+    display: inline-grid; }
+  .assignee-group .assignee-avatar {
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-size: 32px; }
+  .assignee-group .justify-self--center {
+    justify-self: center; }

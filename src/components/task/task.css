@@ -1,17 +1,21 @@
 /*--- Common styles: mixins, variables ---*/
 .task {
   margin: 10px 0;
-  padding: 5px;
+  padding: 5px 37px 5px 5px;
   border: 1px dotted #808080;
   position: relative; }
-  .task .edit-button {
+  .task:hover {
+    background-color: #ffde31d9;
+    cursor: pointer; }
+  .task .avatar {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    height: 18px;
-    width: 18px;
-    background-image: url("../../images/doughnut.png");
+    top: 5px;
+    right: 5px;
+    width: 32px;
+    height: 32px;
     background-repeat: no-repeat;
-    background-size: 18px; }
-    .task .edit-button:hover {
-      background-image: url("../../images/doughnut-hover.png"); }
+    background-size: 32px; }
+  .task .tooltip {
+    position: absolute;
+    font-size: 70%;
+    background-color: rgba(162, 196, 243, 0.5); }

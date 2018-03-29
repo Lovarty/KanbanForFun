@@ -12,7 +12,11 @@ function BoardColumns(props) {
 
     return (
         <div style={BoardColumnsStyle}>
-            {props.processStages.map((colData) => <Column key={colData.id} stageId={colData.id} data={colData} openPopup={props.openPopup} />)}
+            {props.processStages.map((colData) => <Column key={colData.id}
+                stageId={colData.id} data={colData}
+                getAssigneeInfoById={props.getAssigneeInfoById}
+                openPopup={props.openPopup}
+                changeTaskStage={props.changeTaskStage} />)}
         </div>);
 }
 

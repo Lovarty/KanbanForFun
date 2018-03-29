@@ -1,0 +1,14 @@
+/*--- Common styles: mixins, variables ---*/
+.selector-with-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 72px;
+  margin-right: 17%;
+  overflow-y: scroll;
+  grid-column-gap: 5px;
+  border: 1px dashed #808080; }
+  .selector-with-images .option {
+    cursor: pointer;
+    height: 36px; }
+  .selector-with-images .current-option {
+    background-color: #ffde31d9; }

@@ -36,31 +36,36 @@
       border-color: #c77db3; }
   .popup .popup__form__select {
     width: 45%; }
-
-.close-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-image: url("../../images/close1.png");
-  background-repeat: no-repeat;
-  background-size: 32px;
-  width: 32px;
-  height: 32px; }
-  .close-button:hover {
-    background-image: url("../../images/close1-hover.png"); }
-
-.submit-button {
-  background-color: #a2c4f3;
-  border: none;
-  border: 1px dotted #808080;
-  height: 35px;
-  color: #fff; }
-  .submit-button:disabled, .submit-button[disabled] {
-    cursor: not-allowed;
-    pointer-events: none;
-    /*Button disabled - CSS color class*/
-    color: #c0c0c0;
-    background-color: #ffffff; }
-  .submit-button:hover {
-    background-color: #6F898D;
-    border-color: #a2c4f3; }
+  .popup .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-image: url("../../images/close1.png");
+    background-repeat: no-repeat;
+    background-size: 32px;
+    width: 32px;
+    height: 32px; }
+    .popup .close-button:hover {
+      background-image: url("../../images/close1-hover.png"); }
+  .popup .submit-button {
+    background-color: #a2c4f3;
+    border: none;
+    border: 1px dotted #808080;
+    height: 35px;
+    color: #fff; }
+    .popup .submit-button:disabled, .popup .submit-button[disabled] {
+      cursor: not-allowed;
+      pointer-events: none;
+      /*Button disabled - CSS color class*/
+      color: #c0c0c0;
+      background-color: #ffffff; }
+    .popup .submit-button:hover {
+      background-color: #6F898D;
+      border-color: #a2c4f3; }
+  .popup .two-column-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; }
+  .popup.popup__creating-mode .selector-with-images {
+    width: 50%; }
+  .popup.popup__creating-mode .assignee-group {
+    width: fit-content; }

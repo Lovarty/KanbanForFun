@@ -51,43 +51,57 @@
   .popup__form__select {
     width: 45%;
   }
-}
 
-.close-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-image: url("../../images/close1.png");
-  background-repeat: no-repeat;
-  background-size: 32px;
-  width: 32px;
-  height: 32px;
+  .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-image: url("../../images/close1.png");
+    background-repeat: no-repeat;
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
 
-  &:hover {
-    background-image: url("../../images/close1-hover.png");
-  }
-}
-
-.submit-button {
-  background-color: $LIGHT_BLUE;
-  border: none;
-  border: 1px dotted $LIGHT_GREY;
-  height: 35px;
-  color: $WHITE_COLOR;
-
-  &:disabled,
-  &[disabled] {
-    cursor: not-allowed;
-    pointer-events: none;
-
-    /*Button disabled - CSS color class*/
-    color: #c0c0c0;
-    background-color: #ffffff;
+    &:hover {
+      background-image: url("../../images/close1-hover.png");
+    }
   }
 
-  &:hover {
-    background-color: $HOVER_BUTTON_GREY;
-    border-color: $LIGHT_BLUE;
+  .submit-button {
+    background-color: $LIGHT_BLUE;
+    border: none;
+    border: 1px dotted $LIGHT_GREY;
+    height: 35px;
+    color: $WHITE_COLOR;
+
+    &:disabled,
+    &[disabled] {
+      cursor: not-allowed;
+      pointer-events: none;
+
+      /*Button disabled - CSS color class*/
+      color: #c0c0c0;
+      background-color: #ffffff;
+    }
+
+    &:hover {
+      background-color: $HOVER_BUTTON_GREY;
+      border-color: $LIGHT_BLUE;
+    }
+  }
+
+  .two-column-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &.popup__creating-mode {
+    .selector-with-images {
+      width: 50%;
+    }
+    .assignee-group{
+      width: fit-content;
+    }
   }
 
 }

@@ -3,5 +3,9 @@ const MODE = {
     creating: "creating"
 }
 
+const POSITION = {
+    developer: "developer",
+    tester: "tester"
+}
 
-export { MODE };
+export { MODE, POSITION };

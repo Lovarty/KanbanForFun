@@ -1,0 +1,20 @@
+@import "../../common/constants.scss";
+
+.selector-with-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 72px;
+  margin-right: 17%;
+  overflow-y: scroll;
+  grid-column-gap: 5px;
+  border: 1px dashed $LIGHT_GREY;
+
+  .option {
+    cursor: pointer;
+    height: 36px;
+  }
+
+  .current-option {
+    background-color: $YELLOW_ORANGE;
+  }
+}
