@@ -17,9 +17,9 @@ class Column extends Component {
 
     unFocus = () => {
         if (document.selection) {
-            document.selection.empty()
+            document.selection.empty();
         } else {
-            window.getSelection().removeAllRanges()
+            window.getSelection().removeAllRanges();
         }
     }
 
@@ -29,9 +29,11 @@ class Column extends Component {
         return (
             <div className="column"
                 onMouseMove={this.unFocus}
-                onMouseUp={this.unFocus}>
+                onMouseUp={this.unFocus}
+                onDrop={e => this.onDrop(e, id)} 
+                onDragOver={e => this.onDragOver(e)}>
                 <div>{title}</div>
-                <div className="tasks-container" onDrop={e => this.onDrop(e, id)} onDragOver={e => this.onDragOver(e)}>
+                <div className="tasks-container">
                     {tasks.map((task) => <Task key={task.id}
                         stageId={this.props.stageId}
                         getAssigneeInfoById={this.props.getAssigneeInfoById}
