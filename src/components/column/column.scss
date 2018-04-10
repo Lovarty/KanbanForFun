@@ -2,8 +2,18 @@
 
 .column {
   padding: 20px;
+
+  &:nth-child(even) {
+    background-color: $LIGHT_BLUE;
+  }
+
+  .task-placeholder{
+    margin: 10px 0;
+    height: 32px;
+    padding: 5px 37px 5px 5px;
+    border: 1px dotted $LIGHT_GREY;
+    position: relative;
+    background-color: rgb(155, 135, 179);
+  }  
 }
 
-.column:nth-child(even) {
-  background-color: $LIGHT_BLUE;
-}

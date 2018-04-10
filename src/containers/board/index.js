@@ -6,7 +6,6 @@ import BoardColumns from '../../components/board-columns/';
 import Popup from '../../components/popup/';
 import { MODE } from '../../common/constants.js';
 
-
 class Board extends Component {
 
   constructor(props) {
@@ -75,7 +74,35 @@ class Board extends Component {
               title: "task 3",
               description: "Pilgrims",
               categoryId: 1
-            }
+            },
+            {
+              id: uuidv1(),
+              title: "task 47",
+              description: "task 47",
+              assigneeId: 1,
+              categoryId: 1
+            },
+            {
+              id: uuidv1(),
+              title: "task 56",
+              description: "task 56",
+              assigneeId: 1,
+              categoryId: 1
+            },
+            {
+              id: uuidv1(),
+              title: "task 53",
+              description: "task 53",
+              assigneeId: 1,
+              categoryId: 1
+            },
+            {
+              id: uuidv1(),
+              title: "task 25",
+              description: "task 25",
+              assigneeId: 1,
+              categoryId: 1
+            },
           ]
         },
         {
@@ -311,6 +338,18 @@ class Board extends Component {
       newCategory.tasks.push(currentTask);
 
       allStagesTasks[newCategoryIndex] = newCategory;
+
+      this.setState({ processStages: allStagesTasks });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  changeTasksOrder = (newTasksOrder, categoryId) => {
+    try {
+      let allStagesTasks = this.state.processStages.slice();
+      let categoryIndex = allStagesTasks.findIndex(category=> category.id === categoryId);
+      allStagesTasks[categoryIndex].tasks = newTasksOrder;
 
       this.setState({ processStages: allStagesTasks });
     } catch (e) {

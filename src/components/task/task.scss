@@ -2,6 +2,7 @@
 
 .task {
   margin: 10px 0;
+  height: 32px;
   padding: 5px 37px 5px 5px;
   border: 1px dotted $LIGHT_GREY;
   position: relative;
@@ -26,4 +27,5 @@
     font-size: 70%;
     background-color: rgba(162,196,243,0.5);
   }
+
 }

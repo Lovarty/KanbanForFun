@@ -5,7 +5,7 @@ class Task extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            openTooltip: false
+            openTooltip: false,
         };
     }
 
@@ -22,13 +22,6 @@ class Task extends Component {
     openPopup = () => {
         this.props.openPopup({ taskId: this.props.data.id, stageId: this.props.stageId });
     }
-
-    onDragStart = e => {
-        e.dataTransfer.setData("taskId", e.target.id);
-        console.log("Start to drag " + e.target.id);
-    }
-
-
 
     render() {
         const { title, description, assigneeId, id } = this.props.data,
@@ -48,10 +41,9 @@ class Task extends Component {
             };
         }
 
-        return (<div className="task" draggable="true"
+        return (<div className="task"
             onClick={this.openPopup}
-            id={id}
-            onDragStart={e => this.onDragStart(e)}>
+            id={id}>
             <div>{title}</div>
             <div>{description}</div>
             {

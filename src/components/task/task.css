@@ -1,6 +1,7 @@
 /*--- Common styles: mixins, variables ---*/
 .task {
   margin: 10px 0;
+  height: 32px;
   padding: 5px 37px 5px 5px;
   border: 1px dotted #808080;
   position: relative; }

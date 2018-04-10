@@ -1,6 +1,12 @@
 /*--- Common styles: mixins, variables ---*/
 .column {
   padding: 20px; }
-
-.column:nth-child(even) {
-  background-color: #a2c4f3; }
+  .column:nth-child(even) {
+    background-color: #a2c4f3; }
+  .column .task-placeholder {
+    margin: 10px 0;
+    height: 32px;
+    padding: 5px 37px 5px 5px;
+    border: 1px dotted #808080;
+    position: relative;
+    background-color: #9b87b3; }
